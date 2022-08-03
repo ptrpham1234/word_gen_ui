@@ -8,7 +8,7 @@
 # Description:
 #
 
-# TODO: Change all pack to grid
+# TODO: Change the layout of the widgets. Put the text on top and the checkboxes down at the bottom
 #############################################################################################################
 
 ################# I M P O R T S #################
