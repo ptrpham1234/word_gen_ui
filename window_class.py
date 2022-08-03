@@ -28,34 +28,38 @@ class Window:
         self.root.geometry("900x500")
         self.root.minsize(900, 500)
         self.root.maxsize(1920, 1080)
-        self.root.resizable(True, True)
-        self.root.columnconfigure(0, weight=1)
-        self.root.columnconfigure(1, weight=2)
+        self.root.resizable(False, False)
 
         self.rand_message = "This is a random test message to use"
 
         self.enable_home = IntVar()
+        self.enable_top = IntVar()
+        self.enable_bottom = IntVar()
 
         # Displays a Text box
-        self.text_box = tk.Text(self.root, wrap="word", relief=tk.FLAT, border=20)
-        self.text_box.grid(row=1, column=1, rowspan=5)
+        self.text_box = tk.Text(self.root, wrap="word", relief=tk.FLAT, border=20, width=100, height=20)
+        self.text_box.grid(row=0, column=0, columnspan=3, padx=30, pady=20, sticky=tk.NS)
         self.text_box.insert("end", self.rand_message)
 
         # Checkboxes
-        self.enable_homerow_check = Checkbutton(self.root, text="this is a checkbox part 2", variable=self.enable_home,
+        self.enable_homerow_check = Checkbutton(self.root, text="Home Row", variable=self.enable_home,
                                                 onvalue=1, offvalue=0)
-        self.enable_homerow_check.grid(row=1, column=0, padx=10)
+        self.enable_homerow_check.grid(row=1, column=0)
 
         # Checkboxes
-        # ! change the
-        self.enable_toprow_check = Checkbutton(self.root, text="this is a checkbox part 2", variable=self.enable_home,
+        self.enable_toprow_check = Checkbutton(self.root, text="Top Row", variable=self.enable_top,
                                                 onvalue=1, offvalue=0)
-        self.enable_toprow_check.grid(row=2, column=0, padx=10)
+        self.enable_toprow_check.grid(row=1, column=1)
 
         # Checkboxes
-        self.enable_bottomrow_check = Checkbutton(self.root, text="this is a checkbox part 2", variable=self.enable_home,
-                                               onvalue=1, offvalue=0)
-        self.enable_bottomrow_check.grid(row=10, column=0, padx=10)
+        self.enable_bottomrow_check = Checkbutton(self.root, text="Bottom Row", variable=self.enable_bottom,
+                                                onvalue=1, offvalue=0)
+        self.enable_bottomrow_check.grid(row=1, column=2)
+
+        # Button 
+        self.button = Button(self.root, text="Generate", command=lambda: self.button_clicked(self.enable_home.get(), self.enable_top.get(), self.enable_bottom.get()))
+        self.button.config(width=15, pady=8, borderwidth=3)
+        self.button.grid(row=2, column=1, pady=15)
 
         # # Button to press
         # self.button = widgets.Button(self.root)
@@ -63,10 +67,6 @@ class Window:
         # self.button.bind("<Return>", self.return_pressed)
         # self.button.focus()
         # self.button.pack(side=tk.BOTTOM)
-
-        # Create a size grip to resize easier
-        self.size_grip = widgets.Sizegrip(self.root)
-        self.size_grip.grid(row=5, column=1, sticky=tk.SE)
 
 
 
@@ -81,11 +81,21 @@ class Window:
     #  *
     #  * Parameters:
     #############################################################################################################
-    def button_clicked(self, enable_home) -> None:
+    def button_clicked(self, enable_home, enable_top, enable_bottom) -> None:
         if enable_home:
-            print("checked")
+            print("\nhome checked")
         else:
-            print("not checked")
+            print("\nhome not checked")
+
+        if enable_top:
+            print("top row checked")
+        else:
+            print("top row not checked")
+
+        if enable_bottom:
+            print("bottom row checked")
+        else:
+            print("bottom row not checked")
 
     #############################################################################################################
     #  * Function:            main
