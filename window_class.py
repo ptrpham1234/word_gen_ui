@@ -26,13 +26,11 @@ class Window:
         self.frame = Frame(self.root)
         self.root.title("learning_gui window")
         self.root.geometry("900x500")
-        self.root.minsize("900", "500")
-        self.root.maxsize("1920", "1080")
+        self.root.minsize(900, 500)
+        self.root.maxsize(1920, 1080)
         self.root.resizable(True, True)
         self.root.columnconfigure(0, weight=1)
         self.root.columnconfigure(1, weight=2)
-        self.root.rowconfigure(0, weight=1)
-        self.root.rowconfigure(1, weight=1)
 
         self.rand_message = "This is a random test message to use"
 
@@ -40,12 +38,24 @@ class Window:
 
         # Displays a Text box
         self.text_box = tk.Text(self.root, wrap="word", relief=tk.FLAT, border=20)
-        self.text_box.grid(row=0, column=1, rowspan=2)
+        self.text_box.grid(row=1, column=1, rowspan=5)
         self.text_box.insert("end", self.rand_message)
 
         # Checkboxes
-        self.enable_homerow_check = Checkbutton(self.root, text="this is a checkbox", variable=self.enable_home, onvalue=1, offvalue=0)
-        self.enable_homerow_check.grid(row=1, column=0, sticky=tk.W, padx=5,)
+        self.enable_homerow_check = Checkbutton(self.root, text="this is a checkbox part 2", variable=self.enable_home,
+                                                onvalue=1, offvalue=0)
+        self.enable_homerow_check.grid(row=1, column=0, padx=10)
+
+        # Checkboxes
+        # ! change the
+        self.enable_toprow_check = Checkbutton(self.root, text="this is a checkbox part 2", variable=self.enable_home,
+                                                onvalue=1, offvalue=0)
+        self.enable_toprow_check.grid(row=2, column=0, padx=10)
+
+        # Checkboxes
+        self.enable_bottomrow_check = Checkbutton(self.root, text="this is a checkbox part 2", variable=self.enable_home,
+                                               onvalue=1, offvalue=0)
+        self.enable_bottomrow_check.grid(row=10, column=0, padx=10)
 
         # # Button to press
         # self.button = widgets.Button(self.root)
@@ -56,7 +66,7 @@ class Window:
 
         # Create a size grip to resize easier
         self.size_grip = widgets.Sizegrip(self.root)
-        self.size_grip.grid(row=1, column=1, sticky=tk.SE)
+        self.size_grip.grid(row=5, column=1, sticky=tk.SE)
 
 
 
